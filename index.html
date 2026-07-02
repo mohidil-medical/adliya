@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+<title>Namangan viloyati Adliya boshqarmasi — Huquqiy ma'lumotnoma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy-950:#0b1a2b;
+  --navy-900:#122438;
+  --navy-800:#1b3a5c;
+  --navy-700:#254b73;
+  --gold-500:#c9a227;
+  --gold-400:#d9b64a;
+  --paper-50:#f7f5ef;
+  --paper-100:#efece2;
+  --paper-200:#e4dfd0;
+  --ink-900:#1a1d23;
+  --ink-700:#3c4048;
+  --ink-500:#666b73;
+  --line:#dcd6c4;
+  --card-bg:#ffffff;
+  --surface:#ffffff;
+  --success:#3f7a4f;
+
+  --bg: var(--paper-50);
+  --bg-elevated: var(--card-bg);
+  --text-primary: var(--ink-900);
+  --text-secondary: var(--ink-700);
+  --text-muted: var(--ink-500);
+  --border-color: var(--line);
+  --header-bg: var(--navy-800);
+  --header-text: #f4f0e4;
+  --accent: var(--gold-500);
+  --shadow: 0 1px 2px rgba(20,20,20,.04), 0 8px 24px -12px rgba(20,20,20,.12);
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 9px;
+
+  --font-display: 'Lora', Georgia, serif;
+  --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+[data-theme="dark"]{
+  --bg:#0a1420;
+  --bg-elevated:#122032;
+  --card-bg:#132538;
+  --text-primary:#eae6d9;
+  --text-secondary:#b9c1cc;
+  --text-muted:#7c8794;
+  --border-color:#233650;
+  --header-bg:#081020;
+  --header-text:#eee9d8;
+  --accent: var(--gold-400);
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 28px -14px rgba(0,0,0,.6);
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+html{ -webkit-tap-highlight-color: transparent; }
+body{
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text-primary);
+  min-height:100vh;
+  transition: background .35s ease, color .35s ease;
+  overflow-x:hidden;
+  padding-bottom: 84px;
+}
+::selection{ background: var(--accent); color:#1a1d23; }
+
+/* subtle paper texture on light mode */
+body::before{
+  content:"";
+  position:fixed; inset:0; pointer-events:none; z-index:0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(27,58,92,0.035) 1px, transparent 0);
+  background-size: 22px 22px;
+  opacity: 1;
+}
+[data-theme="dark"] body::before{
+  background-image: radial-gradient(circle at 1px 1px, rgba(201,162,39,0.05) 1px, transparent 0);
+}
+
+.app{ max-width: 480px; margin: 0 auto; position:relative; z-index:1; min-height:100vh; }
+
+/* ===== HEADER ===== */
+.header{
+  background: linear-gradient(160deg, var(--header-bg), var(--navy-950) 130%);
+  color: var(--header-text);
+  padding: 18px 18px 26px;
+  position: sticky; top:0; z-index:50;
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+  box-shadow: 0 12px 30px -14px rgba(0,0,0,.45);
+}
+.header-top{ display:flex; align-items:center; gap:12px; }
+.seal{
+  width:52px; height:52px; flex-shrink:0;
+  border-radius:50%;
+  background: radial-gradient(circle at 32% 28%, var(--gold-400), var(--gold-500) 55%, #8a6c14 100%);
+  display:flex; align-items:center; justify-content:center;
+  box-shadow: 0 0 0 3px rgba(244,240,228,.14), 0 6px 14px rgba(0,0,0,.35);
+  animation: sealIn .7s cubic-bezier(.34,1.56,.64,1) both;
+}
+.seal svg{ width:28px; height:28px; }
+@keyframes sealIn{
+  0%{ transform: scale(.3) rotate(-30deg); opacity:0; }
+  100%{ transform: scale(1) rotate(0); opacity:1; }
+}
+.header-titles{ flex:1; min-width:0; animation: fadeUp .6s ease .1s both; }
+.header-titles .org{
+  font-size: 11.5px; letter-spacing:.06em; text-transform:uppercase;
+  color: var(--gold-400); font-weight:700; font-family: var(--font-mono);
+}
+.header-titles h1{
+  font-family: var(--font-display); font-weight:600; font-size: 18px; line-height:1.25; margin-top:2px;
+}
+.theme-toggle{
+  width:40px; height:40px; border-radius:12px; border:1px solid rgba(244,240,228,.18);
+  background: rgba(244,240,228,.08); color: var(--header-text);
+  display:flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0;
+  transition: transform .25s ease, background .25s ease;
+}
+.theme-toggle:active{ transform: scale(.9); }
+.theme-toggle svg{ width:19px; height:19px; }
+
+.tagline{
+  margin-top:14px; font-size: 13.5px; line-height:1.55; color: rgba(244,240,228,.78);
+  max-width: 92%;
+  animation: fadeUp .6s ease .18s both;
+}
+
+/* search */
+.search-wrap{ margin-top:16px; position:relative; animation: fadeUp .6s ease .25s both; }
+.search-icon{ position:absolute; left:14px; top:50%; transform: translateY(-50%); width:18px; height:18px; color: var(--navy-700); pointer-events:none; }
+.search-input{
+  width:100%; padding:13px 40px 13px 42px; border-radius:14px; border:none;
+  font-family: var(--font-body); font-size:14.5px; font-weight:500;
+  background: var(--paper-50); color: var(--ink-900);
+  box-shadow: inset 0 0 0 1.5px rgba(0,0,0,.03), 0 6px 16px -8px rgba(0,0,0,.4);
+  outline:none;
+}
+.search-input::placeholder{ color: var(--ink-500); }
+.search-clear{
+  position:absolute; right:8px; top:50%; transform: translateY(-50%);
+  width:26px; height:26px; border-radius:50%; border:none; background: var(--paper-200);
+  color: var(--ink-700); display:none; align-items:center; justify-content:center; cursor:pointer;
+}
+.search-clear svg{ width:13px; height:13px; }
+.search-wrap.has-value .search-clear{ display:flex; }
+
+/* live search results dropdown */
+.search-results{
+  margin-top:10px; background: var(--bg-elevated); border-radius:16px; overflow:hidden;
+  box-shadow: 0 16px 34px -16px rgba(0,0,0,.45);
+  max-height:0; opacity:0; transition: max-height .35s ease, opacity .25s ease;
+}
+.search-results.open{ max-height: 420px; opacity:1; overflow-y:auto; }
+.sr-item{
+  display:flex; align-items:center; gap:10px; padding:12px 14px; cursor:pointer;
+  border-bottom:1px solid var(--border-color); color: var(--text-primary);
+  transition: background .15s ease;
+}
+.sr-item:last-child{ border-bottom:none; }
+.sr-item:active{ background: var(--paper-100); }
+[data-theme="dark"] .sr-item:active{ background: #17293e; }
+.sr-icon{ font-size:16px; flex-shrink:0; }
+.sr-texts{ min-width:0; }
+.sr-title{ font-size:13.5px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.sr-section{ font-size:11px; color: var(--text-muted); margin-top:1px; font-family: var(--font-mono); }
+.sr-empty{ padding:22px 14px; text-align:center; color: var(--text-muted); font-size:13px; }
+mark{ background: rgba(201,162,39,.35); color:inherit; border-radius:3px; padding:0 1px; }
+
+/* ===== SECTIONS GRID ===== */
+.section-label{
+  display:flex; align-items:baseline; justify-content:space-between;
+  padding: 22px 18px 10px; font-family: var(--font-display);
+}
+.section-label h2{ font-size:15.5px; font-weight:600; color: var(--text-primary); }
+.section-label span{ font-family: var(--font-mono); font-size:10.5px; color: var(--text-muted); letter-spacing:.04em; }
+
+.grid{
+  display:grid; grid-template-columns: 1fr 1fr; gap:12px; padding: 4px 18px 8px;
+}
+.card{
+  background: var(--bg-elevated); border:1px solid var(--border-color);
+  border-radius: var(--radius-md); padding:16px 14px; cursor:pointer;
+  display:flex; flex-direction:column; gap:10px; min-height:112px;
+  box-shadow: var(--shadow);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  opacity:0; transform: translateY(14px);
+  animation: cardIn .55s cubic-bezier(.22,1,.36,1) forwards;
+}
+@keyframes cardIn{ to{ opacity:1; transform: translateY(0); } }
+.card:hover{ transform: translateY(-3px); box-shadow: 0 14px 28px -14px rgba(0,0,0,.28); border-color: var(--accent); }
+.card:active{ transform: translateY(0) scale(.97); }
+.card-icon{
+  width:38px; height:38px; border-radius:11px; display:flex; align-items:center; justify-content:center;
+  font-size:19px; background: linear-gradient(150deg, var(--navy-800), var(--navy-950));
+}
+.card-title{ font-size:13.3px; font-weight:700; line-height:1.3; color: var(--text-primary); }
+.card-count{ font-size:10.5px; color: var(--text-muted); font-family: var(--font-mono); margin-top:-4px; }
+
+/* ===== DETAIL OVERLAY ===== */
+.overlay{
+  position:fixed; inset:0; background: rgba(8,14,22,.55); backdrop-filter: blur(2px);
+  z-index:100; opacity:0; pointer-events:none; transition: opacity .3s ease;
+}
+.overlay.open{ opacity:1; pointer-events:auto; }
+
+.detail{
+  position:fixed; left:0; right:0; bottom:0; z-index:101;
+  max-width:480px; margin:0 auto;
+  background: var(--bg); border-top-left-radius:26px; border-top-right-radius:26px;
+  height: 92vh; transform: translateY(100%);
+  transition: transform .42s cubic-bezier(.19,1,.22,1);
+  display:flex; flex-direction:column; overflow:hidden;
+  box-shadow: 0 -20px 50px rgba(0,0,0,.4);
+}
+.detail.open{ transform: translateY(0); }
+.detail-handle{ width:42px; height:5px; border-radius:3px; background: var(--border-color); margin:10px auto 0; flex-shrink:0; }
+
+.detail-head{
+  padding: 14px 20px 18px; flex-shrink:0;
+  background: linear-gradient(160deg, var(--header-bg), var(--navy-950) 140%);
+  color: var(--header-text);
+  border-bottom: 3px solid var(--accent);
+}
+.detail-head-row{ display:flex; align-items:flex-start; gap:12px; }
+.detail-icon{ font-size:26px; width:46px; height:46px; border-radius:13px; background: rgba(244,240,228,.1); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.detail-titles h3{ font-family: var(--font-display); font-size:19px; font-weight:600; line-height:1.25; }
+.detail-titles p{ font-size:12px; color: rgba(244,240,228,.7); margin-top:4px; }
+.detail-close{
+  margin-left:auto; width:34px; height:34px; border-radius:50%; border:none;
+  background: rgba(244,240,228,.1); color: var(--header-text); display:flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0;
+}
+.detail-close svg{ width:16px; height:16px; }
+
+.detail-body{ flex:1; overflow-y:auto; padding: 14px 16px 30px; -webkit-overflow-scrolling:touch; }
+
+/* accordion */
+.acc-item{
+  border:1px solid var(--border-color); border-radius:14px; margin-bottom:10px; overflow:hidden;
+  background: var(--bg-elevated);
+}
+.acc-trigger{
+  width:100%; display:flex; align-items:center; gap:10px; padding:14px 14px; background:none; border:none;
+  cursor:pointer; text-align:left; font-family: var(--font-body); color: var(--text-primary);
+}
+.acc-arrow{
+  font-family: var(--font-mono); font-size:13px; color: var(--accent); font-weight:700; flex-shrink:0;
+  transition: transform .3s ease; display:inline-block;
+}
+.acc-item.open .acc-arrow{ transform: rotate(90deg); }
+.acc-trigger-title{ font-size:14px; font-weight:600; flex:1; line-height:1.4; }
+.acc-panel{
+  max-height:0; overflow:hidden; transition: max-height .38s ease;
+}
+.acc-panel-inner{
+  padding: 0 16px 16px 38px; font-family: var(--font-display); font-size:14px; line-height:1.75; color: var(--text-secondary);
+}
+.acc-panel-inner p + p{ margin-top:10px; }
+
+.pdf-btn{
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  width:100%; padding:13px; margin-top:6px; border-radius:14px; border:1.5px dashed var(--accent);
+  background: transparent; color: var(--text-primary); font-family: var(--font-body); font-weight:700; font-size:13.5px;
+  cursor:pointer; transition: background .2s ease;
+}
+.pdf-btn:active{ background: rgba(201,162,39,.12); }
+.pdf-btn svg{ width:16px; height:16px; color: var(--accent); }
+
+.empty-note{
+  text-align:center; padding: 30px 10px; color: var(--text-muted); font-size:13px; font-family: var(--font-display); font-style:italic;
+}
+
+/* ===== FOOTER / BOTTOM NAV ===== */
+.footer{ padding: 26px 20px 20px; text-align:center; }
+.footer p{ font-size:11.5px; color: var(--text-muted); line-height:1.7; }
+.footer .contact-btn{
+  display:inline-flex; align-items:center; gap:8px; margin-top:14px; padding:11px 20px; border-radius:100px;
+  background: var(--navy-800); color:#f4f0e4; font-size:13px; font-weight:700; font-family: var(--font-body);
+  text-decoration:none; box-shadow: var(--shadow);
+}
+
+.bottom-bar{
+  position:fixed; bottom:0; left:0; right:0; z-index:60;
+  max-width:480px; margin:0 auto;
+  background: var(--bg-elevated); border-top:1px solid var(--border-color);
+  display:flex; padding: 8px 10px calc(env(safe-area-inset-bottom,0px) + 8px);
+  box-shadow: 0 -8px 20px -12px rgba(0,0,0,.2);
+}
+.bb-item{
+  flex:1; display:flex; flex-direction:column; align-items:center; gap:3px; padding:6px 2px;
+  color: var(--text-muted); background:none; border:none; cursor:pointer; font-family: var(--font-body);
+  transition: color .2s ease;
+}
+.bb-item.active{ color: var(--accent); }
+.bb-item svg{ width:20px; height:20px; }
+.bb-item span{ font-size:10px; font-weight:700; }
+
+/* scrollbar */
+.detail-body::-webkit-scrollbar, .search-results::-webkit-scrollbar{ width:5px; }
+.detail-body::-webkit-scrollbar-thumb, .search-results::-webkit-scrollbar-thumb{ background: var(--border-color); border-radius:3px; }
+
+@keyframes fadeUp{ from{ opacity:0; transform: translateY(8px);} to{ opacity:1; transform: translateY(0);} }
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:.001ms !important; transition-duration:.001ms !important; }
+}
+
+.toast{
+  position:fixed; left:50%; bottom:96px; transform: translate(-50%, 12px); z-index:200;
+  background: var(--navy-950); color:#f4f0e4; padding:11px 18px; border-radius:100px;
+  font-size:12.5px; font-weight:600; opacity:0; pointer-events:none; transition: all .3s ease;
+  box-shadow: 0 10px 24px rgba(0,0,0,.35); white-space:nowrap;
+}
+.toast.show{ opacity:1; transform: translate(-50%, 0); }
+</style>
+</head>
+<body data-theme="light">
+
+<div class="app">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-top">
+      <div class="seal" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#122438" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2 4 5v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V5l-8-3Z"/>
+          <path d="M9 12l2 2 4-4"/>
+        </svg>
+      </div>
+      <div class="header-titles">
+        <div class="org">Namangan viloyati</div>
+        <h1>Adliya boshqarmasi</h1>
+      </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="Rejimni almashtirish">
+        <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/>
+        </svg>
+      </button>
+    </div>
+
+    <p class="tagline">Fuqarolar uchun qonunchilik, kodekslar va davlat xizmatlari bo'yicha rasmiy ma'lumotnoma — bir joyda, tez va tushunarli tarzda.</p>
+
+    <div class="search-wrap" id="searchWrap">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" class="search-input" id="searchInput" placeholder="Qidiring: advokat, nikoh, litsenziya…" autocomplete="off">
+      <button class="search-clear" id="searchClear" aria-label="Tozalash">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </header>
+
+  <!-- SECTIONS -->
+  <div class="section-label">
+    <h2>Bo'limlar</h2>
+    <span id="sectionCount">12 TA BO'LIM</span>
+  </div>
+  <div class="grid" id="grid"></div>
+
+  <div class="footer">
+    <p>© 2026 Namangan viloyati Adliya boshqarmasi.<br>Ma'lumotlar tanishtiruv maqsadida keltirilgan bo'lib, rasmiy manba sifatida to'liq matnlarga murojaat qiling.</p>
+    <a href="#" class="contact-btn" id="footerContact">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+      Biz bilan bog'lanish
+    </a>
+  </div>
+</div>
+
+<!-- overlay + detail sheet -->
+<div class="overlay" id="overlay"></div>
+<div class="detail" id="detail">
+  <div class="detail-handle"></div>
+  <div class="detail-head">
+    <div class="detail-head-row">
+      <div class="detail-icon" id="detailIcon">📜</div>
+      <div class="detail-titles">
+        <h3 id="detailTitle">Bo'lim nomi</h3>
+        <p id="detailSubtitle">Qisqacha tavsif</p>
+      </div>
+      <button class="detail-close" id="detailClose" aria-label="Yopish">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="detail-body" id="detailBody"></div>
+</div>
+
+<div class="bottom-bar">
+  <button class="bb-item active" id="navHome">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/><path d="M9 22V12h6v10"/></svg>
+    <span>Bosh sahifa</span>
+  </button>
+  <button class="bb-item" id="navSearch">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    <span>Qidiruv</span>
+  </button>
+  <button class="bb-item" id="navFaq">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 2-3 4"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <span>Savollar</span>
+  </button>
+  <button class="bb-item" id="navContact">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+    <span>Aloqa</span>
+  </button>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============ MA'LUMOTLAR BAZASI ============ */
+const SECTIONS = [
+  { id:'konstitutsiya', icon:'📜', title:'Konstitutsiya', desc:"O'zbekiston Respublikasi Konstitutsiyasi",
+    items:[
+      {t:"Konstitutsiyaviy tuzum asoslari", c:"O'zbekiston Respublikasi — suveren, demokratik huquqiy davlat. Davlat hokimiyati xalq irodasiga asoslanadi va uni faqat xalq nomidan Oliy Majlis, Prezident va mahalliy hokimiyat organlari amalga oshiradi."},
+      {t:"Inson va fuqarolarning huquq va erkinliklari", c:"Har bir inson tug'ilishidanoq daxlsiz huquq va erkinliklarga ega. Yashash huquqi, shaxsiy daxlsizlik, vijdon erkinligi, mulk huquqi Konstitutsiya bilan kafolatlangan."},
+      {t:"Hokimiyatlar taqsimoti", c:"Davlat hokimiyati qonun chiqaruvchi, ijro etuvchi va sud hokimiyatiga bo'linadi. Bu tizim hokimiyatning suiiste'mol qilinishining oldini oladi."},
+      {t:"Mahalliy davlat hokimiyati", c:"Viloyatlar, tumanlar va shaharlarda hokimiyat xalq deputatlari Kengashlari va hokimlar tomonidan amalga oshiriladi."},
+      {t:"Konstitutsiya matni (to'liq)", c:"Konstitutsiyaning to'liq matni 6 bo'lim va 155 moddadan iborat bo'lib, rasmiy huquqiy portallarda joylashtirilgan."},
+    ]},
+  { id:'qonunlar', icon:'⚖️', title:'Qonunlar', desc:"Amaldagi qonunlar to'plami",
+    items:[
+      {t:"Qonun loyihalari va qabul qilish tartibi", c:"Qonun loyihalari Oliy Majlis Qonunchilik palatasiga kiritilib, uchta o'qishdan o'tadi, so'ng Senat tomonidan ma'qullanadi va Prezident tomonidan imzolanadi."},
+      {t:"Fuqarolik holati dalolatnomalari to'g'risidagi qonun", c:"Fuqarolik holati aktlarini davlat ro'yxatidan o'tkazish tartibi, nikoh, tug'ilish, vafot kabi holatlarni qamrab oladi."},
+      {t:"Davlat xizmati to'g'risidagi qonun", c:"Davlat xizmatchilarining huquqiy maqomi, lavozimga tayinlash, attestatsiya va mas'uliyat masalalarini tartibga soladi."},
+      {t:"Ma'muriy protseduralar to'g'risidagi qonun", c:"Davlat organlari fuqarolar bilan o'zaro munosabatida qanday protseduralarga rioya qilishi kerakligini belgilaydi."},
+      {t:"Yangi qonunlar arxivi", c:"So'nggi 12 oyda qabul qilingan barcha qonunlar xronologik tartibda joylashtirilgan."},
+    ]},
+  { id:'kodekslar', icon:'📖', title:'Kodekslar', desc:"Fuqarolik, jinoyat, mehnat kodekslari",
+    items:[
+      {t:"Fuqarolik kodeksi", c:"Mulkiy va shaxsiy nomulkiy munosabatlarni, shartnomalar, meros va majburiyatlarni tartibga soladi."},
+      {t:"Jinoyat kodeksi", c:"Jinoyat deb topiladigan qilmishlar va ular uchun javobgarlik chorlarini belgilaydi."},
+      {t:"Mehnat kodeksi", c:"Ish beruvchi va xodim o'rtasidagi munosabatlar, mehnat shartnomasi, dam olish va ish haqi masalalarini tartibga soladi."},
+      {t:"Oila kodeksi", c:"Nikoh, ajrashish, farzand tarbiyasi va oila a'zolari o'rtasidagi huquq hamda majburiyatlarni belgilaydi."},
+      {t:"Ma'muriy javobgarlik kodeksi", c:"Ma'muriy huquqbuzarliklar va ular uchun jarima hamda boshqa jazo chorlarini o'z ichiga oladi."},
+    ]},
+  { id:'hukumat-qarorlari', icon:'📋', title:'Hukumat qarorlari', desc:"Vazirlar Mahkamasi qarorlari",
+    items:[
+      {t:"Ijtimoiy soha bo'yicha qarorlar", c:"Ta'lim, sog'liqni saqlash va ijtimoiy himoya sohalaridagi dolzarb qarorlar shu bo'limda joylashtiriladi."},
+      {t:"Iqtisodiyot va tadbirkorlik qarorlari", c:"Biznes yuritishni yengillashtirish, soliq imtiyozlari va investitsiya muhitiga oid qarorlar."},
+      {t:"Raqamlashtirish dasturlari", c:"Davlat xizmatlarini elektron shaklga o'tkazish bo'yicha qabul qilingan qarorlar va yo'l xaritalari."},
+      {t:"Mahalliy ijro organlari uchun ko'rsatmalar", c:"Viloyat va tuman hokimliklari faoliyatini tartibga soluvchi me'yoriy hujjatlar."},
+    ]},
+  { id:'advokatura', icon:'👨‍⚖️', title:'Advokatura', desc:"Advokatlik faoliyati to'g'risida",
+    items:[
+      {t:"Umumiy qoidalar", c:"Advokatura — malakali yuridik yordam ko'rsatuvchi mustaqil institut. Advokatlik faoliyati litsenziya asosida amalga oshiriladi va davlat organlaridan mustaqildir."},
+      {t:"Advokatning huquqlari", c:"Advokat ish yuritish uchun zarur hujjatlarni so'rash, guvohlarni so'roq qilishda ishtirok etish, sud jarayonida mijoz manfaatlarini himoya qilish huquqiga ega."},
+      {t:"Advokatning majburiyatlari", c:"Advokat qonun doirasida faoliyat yuritishi, mijozning manfaatlarini vijdonan himoya qilishi va kasbiy odob-axloq qoidalariga rioya qilishi shart."},
+      {t:"Advokatlik siri", c:"Advokat mijoz tomonidan ishonib topshirilgan har qanday ma'lumotni sir saqlashga majbur. Bu majburiyat vaqt cheklovisiz amal qiladi."},
+      {t:"Litsenziya olish", c:"Advokatlik litsenziyasini olish uchun yuridik ma'lumot, malaka imtihonini topshirish va staj talablariga javob berish zarur."},
+      {t:"Intizomiy javobgarlik", c:"Kasbiy qoidalarni buzgan advokat nisbatan ogohlantirishdan tortib litsenziyani bekor qilishgacha bo'lgan intizomiy choralar qo'llanilishi mumkin."},
+      {t:"Qonun matni", c:"«Advokatura to'g'risida»gi qonunning to'liq matni rasmiy huquqiy-axborot portalida joylashtirilgan."},
+    ], pdf:true},
+  { id:'notariat', icon:'🏢', title:'Notariat', desc:"Notarial harakatlar va xizmatlar",
+    items:[
+      {t:"Notarial harakatlar turlari", c:"Shartnomalarni tasdiqlash, meros huquqi haqida guvohnoma berish, ko'chirmalarni tasdiqlash kabi harakatlar notarius tomonidan amalga oshiriladi."},
+      {t:"Notarial idoraga murojaat tartibi", c:"Murojaat uchun shaxsni tasdiqlovchi hujjat va ish mohiyatiga oid boshqa hujjatlar taqdim etiladi."},
+      {t:"Notarial xizmat narxlari", c:"Davlat boji va xizmat haqi harakat turiga qarab belgilangan tartibda undiriladi."},
+      {t:"Meros ishlari", c:"Vafot etgan shaxs mol-mulkiga nisbatan meros huquqini rasmiylashtirish jarayoni va zarur muddatlar."},
+    ]},
+  { id:'fhdyo', icon:'👶', title:'FHDYO', desc:"Fuqarolik holati dalolatnomalarini yozish",
+    items:[
+      {t:"Tug'ilishni ro'yxatga olish", c:"Chaqaloq tug'ilgan kundan boshlab bir oy ichida FHDYO bo'limida ro'yxatdan o'tkazilishi lozim."},
+      {t:"Nikohni ro'yxatga olish", c:"Nikoh kelishuvi ariza topshirilgandan so'ng qonunda belgilangan muddatdan keyin rasmiylashtiriladi."},
+      {t:"Nikohni bekor qilish (ajrashish)", c:"Ajrashish sud tartibida yoki, farzandlar bo'lmagan taqdirda, FHDYO organlari orqali amalga oshirilishi mumkin."},
+      {t:"Ism, familiya o'zgartirish", c:"Fuqaro asosli sabablarga ko'ra ism-familiyasini o'zgartirish uchun FHDYO bo'limiga murojaat qilishi mumkin."},
+      {t:"Vafotni ro'yxatga olish", c:"Vafot holati tibbiy xulosa asosida uch kun ichida ro'yxatdan o'tkaziladi."},
+    ]},
+  { id:'yuridik-xizmatlar', icon:'🏠', title:'Yuridik xizmatlar', desc:"Fuqarolarga bepul yuridik yordam",
+    items:[
+      {t:"Bepul yuridik yordam kimlarga tegishli", c:"Kam ta'minlangan oilalar, nogironligi bo'lgan shaxslar va boshqa ijtimoiy himoyaga muhtoj toifalar bepul yuridik maslahat olish huquqiga ega."},
+      {t:"Yuridik klinikalar", c:"Oliy o'quv yurtlari huzuridagi yuridik klinikalar aholi murojaatlariga bepul dastlabki maslahat beradi."},
+      {t:"Murojaat qilish tartibi", c:"Yuridik yordam olish uchun tuman/shahar adliya bo'limiga ariza va tegishli hujjatlar bilan murojaat qilinadi."},
+    ]},
+  { id:'intellektual-mulk', icon:'💡', title:'Intellektual mulk', desc:"Mualliflik huquqi va sanoat mulki",
+    items:[
+      {t:"Mualliflik huquqi", c:"Adabiy, ilmiy va badiiy asarlar muallifi tug'ilgan onidan boshlab o'z asariga bo'lgan huquqqa ega bo'ladi, alohida ro'yxatdan o'tkazish shart emas."},
+      {t:"Tovar belgisini ro'yxatdan o'tkazish", c:"Tadbirkorlik sub'ektlari o'z brendini himoya qilish uchun tovar belgisini davlat reyestriga kiritishlari mumkin."},
+      {t:"Patent olish", c:"Ixtiro, foydali model va sanoat namunalari patent olish orqali huquqiy himoyaga ega bo'ladi."},
+      {t:"Huquqbuzarlik holatlarida javobgarlik", c:"Intellektual mulk huquqlarini buzish fuqarolik-huquqiy, ma'muriy va jinoiy javobgarlikka olib kelishi mumkin."},
+    ]},
+  { id:'davlat-xizmatlari', icon:'📄', title:'Davlat xizmatlari', desc:"Elektron va an'anaviy xizmatlar",
+    items:[
+      {t:"Yagona interaktiv davlat xizmatlari portali", c:"Ko'plab ma'muriy xizmatlarni onlayn tarzda, uydan chiqmasdan olish imkoniyati mavjud."},
+      {t:"Davlat boji miqdorlari", c:"Har bir xizmat turi uchun belgilangan davlat boji miqdorlari amaldagi qonunchilikka muvofiq hisoblanadi."},
+      {t:"Xizmat ko'rsatish muddatlari", c:"Ko'pchilik davlat xizmatlari 1 kundan 30 kungacha bo'lgan muddatlarda ko'rsatiladi."},
+      {t:"Murojaatlar bilan ishlash tartibi", c:"Fuqarolarning yozma va elektron murojaatlari qonunda belgilangan muddatlarda ko'rib chiqiladi."},
+    ]},
+  { id:'faq', icon:'❓', title:"Ko'p so'raladigan savollar", desc:"Tez-tez uchraydigan savollarga javoblar",
+    items:[
+      {t:"Advokatga qanday murojaat qilaman?", c:"Viloyat advokatlar palatasi ro'yxatidan advokat tanlab, bevosita yoki adliya bo'limi orqali murojaat qilishingiz mumkin."},
+      {t:"Nikohni qayerda ro'yxatdan o'tkazish mumkin?", c:"Yashash manzilingizdagi FHDYO bo'limiga ikkala tomon ham shaxsan tashrif buyurishi kerak."},
+      {t:"Bepul yuridik yordam qanday olinadi?", c:"Ijtimoiy himoyaga muhtoj toifadagi fuqarolar tuman adliya bo'limiga murojaat orqali bepul maslahat olishlari mumkin."},
+      {t:"Notarial hujjat qancha muddatda tayyor bo'ladi?", c:"Aksariyat notarial harakatlar bir kun ichida, murakkab holatlar esa bir necha kun ichida rasmiylashtiriladi."},
+      {t:"Shikoyatni qayerga yuboraman?", c:"Davlat organi faoliyatidan norozi bo'lsangiz, yuqori turuvchi organga yoki elektron murojaatlar portaliga ariza yuborishingiz mumkin."},
+    ]},
+  { id:'aloqa', icon:'☎️', title:'Aloqa', desc:"Bog'lanish uchun ma'lumotlar",
+    items:[
+      {t:"Manzil", c:"Namangan shahar, Alisher Navoiy ko'chasi, Adliya boshqarmasi binosi."},
+      {t:"Ish vaqti", c:"Dushanba — Juma, 09:00 dan 18:00 gacha, tushlik tanaffusi 13:00–14:00."},
+      {t:"Ishonch telefoni", c:"Fuqarolar murojaatlari uchun ishonch telefoni ish kunlari davomida faoliyat yuritadi."},
+      {t:"Elektron murojaat", c:"Rasmiy elektron murojaatlar portali orqali ariza va shikoyatlaringizni yuborishingiz mumkin."},
+    ]},
+];
+
+/* ============ RENDER: CARDS ============ */
+const grid = document.getElementById('grid');
+SECTIONS.forEach((s, i)=>{
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.style.animationDelay = (0.05 + i*0.045) + 's';
+  card.innerHTML = `
+    <div class="card-icon">${s.icon}</div>
+    <div class="card-title">${s.title}</div>
+    <div class="card-count">${s.items.length} TA MAVZU</div>
+  `;
+  card.addEventListener('click', ()=> openDetail(s.id));
+  grid.appendChild(card);
+});
+document.getElementById('sectionCount').textContent = SECTIONS.length + " TA BO'LIM";
+
+/* ============ DETAIL SHEET ============ */
+const overlay = document.getElementById('overlay');
+const detail = document.getElementById('detail');
+const detailIcon = document.getElementById('detailIcon');
+const detailTitle = document.getElementById('detailTitle');
+const detailSubtitle = document.getElementById('detailSubtitle');
+const detailBody = document.getElementById('detailBody');
+
+function openDetail(id, highlightTerm){
+  const s = SECTIONS.find(x=>x.id===id);
+  if(!s) return;
+  detailIcon.textContent = s.icon;
+  detailTitle.textContent = s.title;
+  detailSubtitle.textContent = s.desc;
+  detailBody.innerHTML = '';
+
+  s.items.forEach((it, idx)=>{
+    const wrap = document.createElement('div');
+    wrap.className = 'acc-item';
+    const titleHtml = highlightTerm ? highlightText(it.t, highlightTerm) : it.t;
+    wrap.innerHTML = `
+      <button class="acc-trigger">
+        <span class="acc-arrow">►</span>
+        <span class="acc-trigger-title">${titleHtml}</span>
+      </button>
+      <div class="acc-panel">
+        <div class="acc-panel-inner"><p>${it.c}</p></div>
+      </div>
+    `;
+    const trigger = wrap.querySelector('.acc-trigger');
+    const panel = wrap.querySelector('.acc-panel');
+    trigger.addEventListener('click', ()=>{
+      const isOpen = wrap.classList.contains('open');
+      wrap.parentElement.querySelectorAll('.acc-item.open').forEach(o=>{
+        if(o!==wrap){ o.classList.remove('open'); o.querySelector('.acc-panel').style.maxHeight = null; }
+      });
+      if(isOpen){
+        wrap.classList.remove('open');
+        panel.style.maxHeight = null;
+      } else {
+        wrap.classList.add('open');
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+      }
+    });
+    detailBody.appendChild(wrap);
+    if(highlightTerm && it.t.toLowerCase().includes(highlightTerm.toLowerCase())){
+      // auto-expand matched item
+      setTimeout(()=> trigger.click(), 260);
+    }
+  });
+
+  if(s.pdf){
+    const btn = document.createElement('button');
+    btn.className = 'pdf-btn';
+    btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg> PDF yuklab olish`;
+    btn.addEventListener('click', ()=> showToast("Hujjat tez orada qo'shiladi"));
+    detailBody.appendChild(btn);
+  }
+
+  overlay.classList.add('open');
+  detail.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  closeSearchResults();
+}
+
+function closeDetail(){
+  overlay.classList.remove('open');
+  detail.classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('detailClose').addEventListener('click', closeDetail);
+overlay.addEventListener('click', closeDetail);
+
+/* swipe down to close */
+let touchStartY = null;
+detail.addEventListener('touchstart', e=>{ touchStartY = e.touches[0].clientY; }, {passive:true});
+detail.addEventListener('touchmove', e=>{
+  if(touchStartY===null) return;
+  const dy = e.touches[0].clientY - touchStartY;
+  if(dy > 90) closeDetail();
+}, {passive:true});
+
+/* ============ LIVE SEARCH ============ */
+const searchInput = document.getElementById('searchInput');
+const searchWrap = document.getElementById('searchWrap');
+const searchClear = document.getElementById('searchClear');
+const searchResults = document.getElementById('searchResults');
+
+function highlightText(text, term){
+  const idx = text.toLowerCase().indexOf(term.toLowerCase());
+  if(idx===-1) return text;
+  return text.slice(0,idx) + '<mark>' + text.slice(idx, idx+term.length) + '</mark>' + text.slice(idx+term.length);
+}
+
+function closeSearchResults(){
+  searchResults.classList.remove('open');
+}
+
+function runSearch(term){
+  if(!term){ closeSearchResults(); searchWrap.classList.remove('has-value'); return; }
+  searchWrap.classList.add('has-value');
+  const t = term.toLowerCase();
+  let matches = [];
+  SECTIONS.forEach(s=>{
+    s.items.forEach(it=>{
+      if(it.t.toLowerCase().includes(t) || it.c.toLowerCase().includes(t)){
+        matches.push({sectionId:s.id, sectionTitle:s.title, icon:s.icon, item:it});
+      }
+    });
+    if(s.title.toLowerCase().includes(t) && matches.length < 30){
+      // section-level match without a specific item duplicate isn't needed since items already searched
+    }
+  });
+  matches = matches.slice(0, 12);
+
+  searchResults.innerHTML = '';
+  if(matches.length===0){
+    searchResults.innerHTML = `<div class="sr-empty">"${term}" bo'yicha natija topilmadi</div>`;
+  } else {
+    matches.forEach(m=>{
+      const row = document.createElement('div');
+      row.className = 'sr-item';
+      row.innerHTML = `
+        <div class="sr-icon">${m.icon}</div>
+        <div class="sr-texts">
+          <div class="sr-title">${highlightText(m.item.t, term)}</div>
+          <div class="sr-section">${m.sectionTitle}</div>
+        </div>
+      `;
+      row.addEventListener('click', ()=> openDetail(m.sectionId, term));
+      searchResults.appendChild(row);
+    });
+  }
+  searchResults.classList.add('open');
+}
+
+let debounceTimer;
+searchInput.addEventListener('input', (e)=>{
+  clearTimeout(debounceTimer);
+  const val = e.target.value.trim();
+  debounceTimer = setTimeout(()=> runSearch(val), 140);
+});
+searchClear.addEventListener('click', ()=>{
+  searchInput.value = '';
+  searchWrap.classList.remove('has-value');
+  closeSearchResults();
+  searchInput.focus();
+});
+document.getElementById('navSearch').addEventListener('click', ()=>{
+  window.scrollTo({top:0, behavior:'smooth'});
+  setTimeout(()=> searchInput.focus(), 300);
+});
+
+/* ============ THEME TOGGLE ============ */
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = document.getElementById('themeIcon');
+const moonPath = 'M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z';
+const sunPath = 'M12 3v1m0 16v1m9-9h-1M4 12H3m15.36 6.36-.7-.7M6.34 6.34l-.7-.7m12.02 0-.7.7M6.34 17.66l-.7.7M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Z';
+
+function applyTheme(theme){
+  document.body.setAttribute('data-theme', theme);
+  themeIcon.querySelector('path')?.remove();
+  const p = document.createElementNS('http://www.w3.org/2000/svg','path');
+  p.setAttribute('d', theme === 'dark' ? sunPath : moonPath);
+  themeIcon.appendChild(p);
+}
+let currentTheme = 'light';
+applyTheme(currentTheme);
+themeToggle.addEventListener('click', ()=>{
+  currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+  applyTheme(currentTheme);
+  showToast(currentTheme === 'dark' ? 'Tungi rejim yoqildi' : 'Kunduzgi rejim yoqildi');
+});
+
+/* ============ NAV / TOAST / MISC ============ */
+document.getElementById('navHome').addEventListener('click', ()=>{
+  closeDetail();
+  window.scrollTo({top:0, behavior:'smooth'});
+});
+document.getElementById('navFaq').addEventListener('click', ()=> openDetail('faq'));
+document.getElementById('navContact').addEventListener('click', ()=> openDetail('aloqa'));
+document.getElementById('footerContact').addEventListener('click', (e)=>{ e.preventDefault(); openDetail('aloqa'); });
+
+const bbItems = document.querySelectorAll('.bb-item');
+function setActiveNav(el){
+  bbItems.forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+}
+document.getElementById('navHome').addEventListener('click', function(){ setActiveNav(this); });
+document.getElementById('navSearch').addEventListener('click', function(){ setActiveNav(this); });
+document.getElementById('navFaq').addEventListener('click', function(){ setActiveNav(this); });
+document.getElementById('navContact').addEventListener('click', function(){ setActiveNav(this); });
+
+let toastTimer;
+function showToast(msg){
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=> toast.classList.remove('show'), 2200);
+}
+
+document.addEventListener('click', (e)=>{
+  if(!searchWrap.contains(e.target) && !searchResults.contains(e.target)){
+    closeSearchResults();
+  }
+});
+
+document.addEventListener('keydown', (e)=>{
+  if(e.key === 'Escape'){ closeDetail(); closeSearchResults(); }
+});
+</script>
+</body>
+</html>
